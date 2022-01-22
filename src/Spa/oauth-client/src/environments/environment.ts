@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  authUrl: "https://localhost:5001",
+  authApiUrl: "https://localhost:5001/api",
+  resourceApiUrl: "http://localhost:5050/api",
+  redirectUrl: "http://localhost:4200/auth-callback",
+  logoutUrl: "http://localhost:4200/",
+  silentRedirectUrl: "http://localhost:4200/silent-refresh.html"
 };
 
 /*

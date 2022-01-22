@@ -19,7 +19,7 @@ namespace Resource.Api
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public static void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
             services.AddAuthentication(options =>
             {
@@ -27,7 +27,7 @@ namespace Resource.Api
                 options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;                
             }).AddJwtBearer(o =>
             {
-                o.Authority = "http://localhost:5000";
+                o.Authority = Configuration.GetValue<string>("Authority"); // "https://localhost:5001";
                 o.Audience = "resourceapi";
                 o.RequireHttpsMetadata = false;
             });

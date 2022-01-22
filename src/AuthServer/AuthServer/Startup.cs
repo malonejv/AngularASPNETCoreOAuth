@@ -44,11 +44,11 @@ namespace AuthServer
                 .AddOperationalStore(options =>
                 {
                     options.ConfigureDbContext = builder => builder.UseSqlServer(Configuration.GetConnectionString("Default"));
-                    // this enables automatic token cleanup. this is optional.
-                    options.EnableTokenCleanup = true;
-                    options.TokenCleanupInterval = 30; // interval in seconds
+                    //// this enables automatic token cleanup. this is optional.
+                    //options.EnableTokenCleanup = true;
+                    //options.TokenCleanupInterval = 30; // interval in seconds
                 })
-                //.AddInMemoryPersistedGrants()
+                .AddInMemoryPersistedGrants()
                 .AddInMemoryIdentityResources(Config.GetIdentityResources())
                 .AddInMemoryApiResources(Config.GetApiResources())
                 .AddInMemoryClients(Config.GetClients())
@@ -112,6 +112,7 @@ namespace AuthServer
                     { "System", LogLevel.Warning },
                 }).AddSerilog(serilog.CreateLogger());
 
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCors("AllowAll");
             app.UseIdentityServer();
